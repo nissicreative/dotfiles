@@ -9,7 +9,8 @@ alias dskill="find . -name '*.DS_Store' -type f -delete"
 alias dockspacer="defaults write com.apple.dock persistent-apps -array-add '{tile-type=\"spacer-tile\"}' && killall Dock"
 
 # PHP
-alias p="phpunit"
+alias pu="herd php .vendor/bin/phpunit"
+alias pest="herd php .vendor/bin/pest"
 
 alias cr="COMPOSER_MEMORY_LIMIT=-1 herd composer require"
 alias ci="COMPOSER_MEMORY_LIMIT=-1 herd composer install"
@@ -20,7 +21,7 @@ alias hp="herd php"
 
 # Laravel/Artisan
 alias a="herd php artisan"
-alias pint="./vendor/bin/pint"
+alias pint="herd php ./vendor/bin/pint"
 alias aoc="herd php artisan optimize:clear"
 alias avp="herd php artisan vendor:publish"
 alias mfs="herd php artisan migrate:fresh --seed"
