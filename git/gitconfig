@@ -1,0 +1,15 @@
+[include]
+    path = ~/.gitconfig.local
+[core]
+	excludesfile = /Users/mike/.gitignore_global
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
