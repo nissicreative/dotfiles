@@ -18,4 +18,7 @@ ln -sf "$DOTFILES/claude/laravel-php-guidelines.md" "$HOME/.claude/laravel-php-g
 ln -sf "$DOTFILES/claude/settings.json" "$HOME/.claude/settings.json"
 ln -sf "$DOTFILES/claude/skills" "$HOME/.claude/skills"
 
+# Make personal scripts executable
+chmod +x "$DOTFILES/bin/"*
+
 echo "Done!"

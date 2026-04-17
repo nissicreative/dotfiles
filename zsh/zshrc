@@ -106,6 +106,9 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 # Claude
 export PATH="$HOME/.local/bin:$PATH"
 
+# Personal scripts
+export PATH="$HOME/dotfiles/bin:$PATH"
+
 # Herd injected PHP binary.
 export PATH="/Users/mike/Library/Application Support/Herd/bin/":$PATH
 

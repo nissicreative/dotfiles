@@ -1,0 +1,63 @@
+#!/bin/zsh
+# process-svgs — Optimize SVG logo exports and generate a currentColor ui variant
+#
+# Usage: process-svgs [directory]
+#   directory: path to folder containing SVG files (defaults to current directory)
+#
+# Expects files named: {brand}-{element}-color.svg
+# Produces:           {brand}-{element}-ui.svg (currentColor, SVGO optimized)
+# Also optimizes:     all other *.svg files in the directory
+
+set -e
+
+SVG_DIR="${1:-.}"
+
+if [ ! -d "$SVG_DIR" ]; then
+  echo "Error: directory not found: $SVG_DIR" >&2
+  exit 1
+fi
+
+# Load NVM if npx isn't already available (Herd manages NVM)
+if ! command -v npx &>/dev/null; then
+  HERD_NVM="$HOME/Library/Application Support/Herd/config/nvm"
+  if [ -s "$HERD_NVM/nvm.sh" ]; then
+    source "$HERD_NVM/nvm.sh"
+  else
+    echo "Error: npx not found and NVM could not be loaded." >&2
+    exit 1
+  fi
+fi
+
+if ! npx svgo --version &>/dev/null 2>&1; then
+  echo "Error: svgo is not available via npx." >&2
+  exit 1
+fi
+
+echo "Processing SVGs in: $SVG_DIR"
+echo ""
+
+# Step 1: Copy *-color.svg → *-ui.svg
+for color_file in "$SVG_DIR"/*-color.svg; do
+  [ -f "$color_file" ] || continue
+  ui_file="${color_file/-color.svg/-ui.svg}"
+  cp "$color_file" "$ui_file"
+  echo "Copied  $(basename $color_file) → $(basename $ui_file)"
+done
+
+echo ""
+
+# Step 2: Run SVGO on all SVGs
+echo "Running SVGO..."
+npx svgo --multipass "$SVG_DIR"/*.svg
+
+echo ""
+
+# Step 3: Add fill="currentColor" to the root <svg> element in *-ui.svg files
+for ui_file in "$SVG_DIR"/*-ui.svg; do
+  [ -f "$ui_file" ] || continue
+  sed -i '' 's/<svg /<svg fill="currentColor" /' "$ui_file"
+  echo "currentColor → $(basename $ui_file)"
+done
+
+echo ""
+echo "Done."
