@@ -3,14 +3,18 @@
 # ALIASES
 ####################
 
+# MacOS
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'Current working directory copied to clipboard.'"
 alias flushdns="sudo killall -HUP mDNSResponder"
 alias dskill="find . -name '*.DS_Store' -type f -delete"
 alias dockspacer="defaults write com.apple.dock persistent-apps -array-add '{tile-type=\"spacer-tile\"}' && killall Dock"
 
+# Homebrew
+alias brewup="brew update && brew upgrade && brew cleanup"
+
 # PHP
-alias pu="herd php .vendor/bin/phpunit"
-alias pest="herd php .vendor/bin/pest"
+alias pu="herd php ./vendor/bin/phpunit"
+alias pest="herd php ./vendor/bin/pest"
 
 alias cr="COMPOSER_MEMORY_LIMIT=-1 herd composer require"
 alias ci="COMPOSER_MEMORY_LIMIT=-1 herd composer install"
@@ -43,4 +47,3 @@ alias nah="git reset --hard && git clean -df"
 alias db="cd ~/Dropbox"
 alias si="cd ~/Sites"
 alias co="cd ~/Code"
-alias zc="cd $ZSH/custom"

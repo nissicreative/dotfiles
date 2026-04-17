@@ -66,28 +66,30 @@ Any file matching `*.local` is gitignored at the repo level for the same reason.
 | `flushdns`   | Flush DNS cache                          |
 | `dskill`     | Delete all `.DS_Store` files recursively |
 | `dockspacer` | Add a spacer to the Dock                 |
+| `brewup`     | Update, upgrade, and clean Homebrew      |
 
 ### PHP / Composer
 
-| Alias | Command                  |
-| ----- | ------------------------ |
-| `p`   | `phpunit`                |
-| `hp`  | `herd php`               |
-| `cr`  | `composer require`       |
-| `ci`  | `composer install`       |
-| `cu`  | `composer update`        |
-| `cgu` | `composer global update` |
-| `cda` | `composer dump-autoload` |
+| Alias  | Command                         |
+| ------ | ------------------------------- |
+| `pu`   | `herd php ./vendor/bin/phpunit` |
+| `pest` | `herd php ./vendor/bin/pest`    |
+| `hp`   | `herd php`                      |
+| `cr`   | `herd composer require`         |
+| `ci`   | `herd composer install`         |
+| `cu`   | `herd composer update`          |
+| `cgu`  | `herd composer global update`   |
+| `cda`  | `herd composer dump-autoload`   |
 
 ### Laravel / Artisan
 
-| Alias  | Command                            |
-| ------ | ---------------------------------- |
-| `a`    | `php artisan`                      |
-| `pint` | `./vendor/bin/pint`                |
-| `aoc`  | `php artisan optimize:clear`       |
-| `avp`  | `php artisan vendor:publish`       |
-| `mfs`  | `php artisan migrate:fresh --seed` |
+| Alias  | Command                                  |
+| ------ | ---------------------------------------- |
+| `a`    | `herd php artisan`                       |
+| `pint` | `herd php ./vendor/bin/pint`             |
+| `aoc`  | `herd php artisan optimize:clear`        |
+| `avp`  | `herd php artisan vendor:publish`        |
+| `mfs`  | `herd php artisan migrate:fresh --seed`  |
 
 ### NPM
 
@@ -110,12 +112,11 @@ Any file matching `*.local` is gitignored at the repo level for the same reason.
 
 ### Navigation
 
-| Alias | Destination                |
-| ----- | -------------------------- |
-| `si`  | `~/Sites`                  |
-| `co`  | `~/Code`                   |
-| `db`  | `~/Dropbox`                |
-| `zc`  | oh-my-zsh custom directory |
+| Alias | Destination |
+| ----- | ----------- |
+| `si`  | `~/Sites`   |
+| `co`  | `~/Code`    |
+| `db`  | `~/Dropbox` |
 
 ## Claude CLI
 
