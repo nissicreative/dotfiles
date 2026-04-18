@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal dotfiles for macOS, managing zsh, git, and Claude CLI configuration via symlinks.
+Personal dotfiles for macOS, managing zsh, git, Claude CLI, and Tinkerwell configuration via symlinks.
 
 ## Prerequisites
 
@@ -33,6 +33,7 @@ The script creates symlinks from your home directory into the repo, so any edits
 | `~/.claude/laravel-php-guidelines.md` | `claude/laravel-php-guidelines.md` |
 | `~/.claude/settings.json`             | `claude/settings.json`             |
 | `~/.claude/skills`                    | `claude/skills/`                   |
+| `~/.config/tinkerwell/themes/*.json`  | `tinkerwell/themes/*.json`         |
 
 ## Local Overrides
 
@@ -130,3 +131,15 @@ The `claude/` directory manages configuration for [Claude Code](https://claude.a
 | `skills/`                   | Custom slash command skills (e.g. `/stage`)                                |
 
 To update Claude's behavior, edit the files in `claude/` directly — they're symlinked so changes apply immediately.
+
+## Tinkerwell
+
+The `tinkerwell/themes/` directory stores custom themes for [Tinkerwell](https://tinkerwell.app). Each `.json` file is symlinked into `~/.config/tinkerwell/themes/` by `install.sh`.
+
+To add a new theme, drop the `.json` file into `tinkerwell/themes/` and re-run `./install.sh` — or symlink it manually:
+
+```bash
+ln -sf ~/dotfiles/tinkerwell/themes/mytheme.json ~/.config/tinkerwell/themes/mytheme.json
+```
+
+Themes appear in Tinkerwell under **Settings → Themes** after restarting the app.
