@@ -1,24 +1,25 @@
 ---
 name: stage
 description: >
-  Prepares an atomic git commit by surveying all changes, grouping them into
-  logical units, staging the right files, and drafting a commit message — then
-  stopping before committing so the user can review and decide. Use this skill
-  whenever the user runs `/stage`, asks to "prep a commit", "stage changes",
-  "draft a commit message", or wants to get changes ready without committing
-  yet. Also trigger when the user says things like "get this ready to commit"
-  or "what should I commit here".
+    Prepares an atomic git commit by surveying all changes, grouping them into
+    logical units, staging the right files, and drafting a commit message —
+    then pauses to let the user choose: copy the message, commit, commit and
+    push, or unstage. Use this skill whenever the user runs `/stage`, asks to
+    "prep a commit", "stage changes", "draft a commit message", or wants to
+    get changes ready without committing yet. Also trigger when the user says
+    things like "get this ready to commit" or "what should I commit here".
 ---
 
 # Stage
 
 Your job is to prepare a single, atomic git commit: survey what's changed,
-decide what belongs together, stage it, and draft a message. Then stop — do
-not commit. The user will take it from there.
+decide what belongs together, stage it, draft a message, and then hand the
+user a small menu of next steps. Do not pick an option on your own.
 
 ## Step 1 — Survey the changes
 
 Run these in parallel:
+
 - `git status` — see what's tracked, untracked, or already staged
 - `git diff HEAD` — see all unstaged content changes
 - `git diff --cached` — see anything already staged
@@ -33,6 +34,7 @@ clear story? If yes, all the changes belong together. If no, there are
 multiple independent concerns mixed in.
 
 Common reasons to split:
+
 - Unrelated files changed for unrelated reasons
 - A refactor mixed in with a feature or bug fix
 - A dependency update bundled with application code changes
@@ -49,6 +51,7 @@ of a file belongs to this commit — but only if the split is genuinely clean.
 Don't over-engineer it.
 
 Never stage:
+
 - `.env` files or anything that looks like secrets or credentials
 - Build artifacts or generated files unless that's explicitly the point
 - Lock files unless there's a corresponding dependency change in the same
@@ -60,7 +63,7 @@ Draft both a subject line and a body the user can copy, edit, and use
 directly with `git commit`.
 
 **Subject** (first line): imperative mood, under 72 characters. Focus on
-*why* or *what changed functionally* — not the mechanical what. "Allow guests
+_why_ or _what changed functionally_ — not the mechanical what. "Allow guests
 to check out without registering" is good; "Update CheckoutController.php" is
 not. Check `git log --oneline -10` to match the project's existing style.
 Don't add a ticket number prefix unless the recent commits do.
@@ -80,7 +83,30 @@ Show three things, clearly separated:
    awareness about what remains unstaged and why. This is informational
    only; it is not part of the commit message.
 
-Then stop. Do not run `git commit`. The user decides what happens next.
+Then go to Step 6. Do not run `git commit` yet.
+
+## Step 6 — Offer next-step options
+
+Use the AskUserQuestion tool to ask which action to take. Present exactly
+these four choices, **in this order**:
+
+1. **Copy message** — Leave files staged; copy the commit message to the
+   macOS clipboard via `pbcopy`. Confirm with "Copied. Files remain staged."
+2. **Commit** — Run `git commit` with the drafted subject and body. Use
+   stdin via `git commit -F -` (heredoc) so multi-line bodies are preserved
+   exactly. Print the resulting commit hash and subject on success.
+3. **Commit and push** — Run the commit as in option 2, then `git push`. If
+   push fails because no upstream is set, run
+   `git push -u origin <current-branch>` and report the result. Never force
+   push. Other push failures (rejected non-fast-forward, auth errors) should
+   be reported back as-is, not worked around.
+4. **Unstage** — Run `git reset HEAD --` scoped to only the files this skill
+   staged in Step 3 (track them during staging). Anything the user had
+   pre-staged before running the skill must remain staged. Confirm what was
+   unstaged.
+
+After executing the chosen action, stop. Do not chain additional actions or
+suggest follow-ups unless the user asks.
 
 ---
 
