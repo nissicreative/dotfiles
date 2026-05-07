@@ -33,6 +33,7 @@ The script creates symlinks from your home directory into the repo, so any edits
 | `~/.claude/laravel-php-guidelines.md` | `claude/laravel-php-guidelines.md` |
 | `~/.claude/settings.json`             | `claude/settings.json`             |
 | `~/.claude/skills`                    | `claude/skills/`                   |
+| `~/.copilot/skills`                   | `copilot/skills/`                  |
 | `~/.config/tinkerwell/themes/*.json`  | `tinkerwell/themes/*.json`         |
 
 ## Local Overrides
@@ -84,13 +85,13 @@ Any file matching `*.local` is gitignored at the repo level for the same reason.
 
 ### Laravel / Artisan
 
-| Alias  | Command                                  |
-| ------ | ---------------------------------------- |
-| `a`    | `herd php artisan`                       |
-| `pint` | `herd php ./vendor/bin/pint`             |
-| `aoc`  | `herd php artisan optimize:clear`        |
-| `avp`  | `herd php artisan vendor:publish`        |
-| `mfs`  | `herd php artisan migrate:fresh --seed`  |
+| Alias  | Command                                 |
+| ------ | --------------------------------------- |
+| `a`    | `herd php artisan`                      |
+| `pint` | `herd php ./vendor/bin/pint`            |
+| `aoc`  | `herd php artisan optimize:clear`       |
+| `avp`  | `herd php artisan vendor:publish`       |
+| `mfs`  | `herd php artisan migrate:fresh --seed` |
 
 ### NPM
 
@@ -131,6 +132,14 @@ The `claude/` directory manages configuration for [Claude Code](https://claude.a
 | `skills/`                   | Custom slash command skills (e.g. `/stage`)                                |
 
 To update Claude's behavior, edit the files in `claude/` directly — they're symlinked so changes apply immediately.
+
+## Copilot
+
+The `copilot/` directory manages configuration for [GitHub Copilot](https://github.com/features/copilot).
+
+| File      | Purpose                                     |
+| --------- | ------------------------------------------- |
+| `skills/` | Custom slash command skills (e.g. `/stage`) |
 
 ## Tinkerwell
 

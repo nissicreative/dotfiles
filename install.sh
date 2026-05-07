@@ -18,6 +18,9 @@ ln -sf "$DOTFILES/claude/laravel-php-guidelines.md" "$HOME/.claude/laravel-php-g
 ln -sf "$DOTFILES/claude/settings.json" "$HOME/.claude/settings.json"
 ln -sf "$DOTFILES/claude/skills" "$HOME/.claude/skills"
 
+# Copilot
+ln -sf "$DOTFILES/copilot/skills" "$HOME/.copilot/skills"
+
 # Tinkerwell
 mkdir -p "$HOME/.config/tinkerwell/themes"
 for theme in "$DOTFILES/tinkerwell/themes/"*.json; do
