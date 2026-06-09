@@ -58,9 +58,15 @@
       "Bash(whoami:*)",
       "Bash(xargs:*)",
       "Read(/Users/mike/Sites/**)",
-      "Read('/Users/mike/Library/Application Support/Herd/**')"
+      "Read('/Users/mike/Library/Application Support/Herd/**')",
+      "Skill(stage)",
+      "Skill(stage:*)",
+      "Bash(cat \"/Applications/Herd.app/Contents/Resources/valet/server.php\" | head -80)",
+      "Read(//Applications/Herd.app/Contents/Resources/valet/**)",
+      "Bash(python3 -)",
+      "Bash(~/.config/herd-lite/bin/nvm use *)"
     ]
   },
-  "effortLevel": "high",
+  "effortLevel": "max",
   "theme": "dark-ansi"
 }
