@@ -43,6 +43,15 @@ alias gnew="git init && gaa && gcmsg"
 alias gt="gittower"
 alias nah="git reset --hard && git clean -df"
 
+function gdeploy() {
+  local current=$(git branch --show-current)
+  local target=$(git show-ref --verify --quiet refs/heads/main && echo "main" || echo "master")
+  git checkout "$target" && \
+  git merge "$current" --no-ff && \
+  git push && \
+  git checkout "$current"
+}
+
 # Traversal
 alias db="cd ~/Dropbox"
 alias si="cd ~/Sites"
