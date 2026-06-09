@@ -268,10 +268,12 @@ Validator::extend('organization_type', function ($attribute, $value) {
 ### File Structure
 
 - Controllers: single resource name + `Controller` (`PostController`)
-- Views: kebab-case (`open-source.blade.php`)
-- Jobs: action-based (`CreateUser`, `SendEmailNotification`)
+- Requests: purpose + `Request` suffix (`UpdateProfileRequest`)
+- Notifications: purpose + `Notification` suffix (`OrderShippedNotification`)
+- Jobs: action-based, no `Job` suffix (`CreateUser`, `SendEmailNotification`)
 - Events: tense-based (`UserRegistering`, `UserRegistered`)
 - Listeners: action + `Listener` suffix (`SendInvitationMailListener`)
 - Commands: action + `Command` suffix (`PublishScheduledPostsCommand`)
 - Mailables: purpose + `Mail` suffix (`AccountActivatedMail`)
 - Enums: descriptive name, no prefix (`OrderStatus`, `BookingType`)
+- Views: kebab-case (`open-source.blade.php`)
