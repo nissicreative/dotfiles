@@ -33,6 +33,7 @@ The script creates symlinks from your home directory into the repo, so any edits
 | `~/.claude/laravel-php-guidelines.md` | `claude/laravel-php-guidelines.md` |
 | `~/.claude/settings.json`             | `claude/settings.json`             |
 | `~/.claude/skills`                    | `claude/skills/`                   |
+| `~/.claude/commands`                  | `claude/commands/`                 |
 | `~/.copilot/skills`                   | `copilot/skills/`                  |
 | `~/.config/tinkerwell/themes/*.json`  | `tinkerwell/themes/*.json`         |
 
@@ -130,6 +131,7 @@ The `claude/` directory manages configuration for [Claude Code](https://claude.a
 | `laravel-php-guidelines.md` | Laravel/PHP-specific coding standards, included by `CLAUDE.md`             |
 | `settings.json`             | Allowed commands, MCP servers, and other Claude CLI settings               |
 | `skills/`                   | Custom slash command skills (e.g. `/stage`)                                |
+| `commands/`                 | Custom slash commands (prompt templates, e.g. `/deploy`)                   |
 
 To update Claude's behavior, edit the files in `claude/` directly — they're symlinked so changes apply immediately.
 

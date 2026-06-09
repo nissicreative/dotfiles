@@ -16,10 +16,11 @@ ln -sf "$DOTFILES/git/gitignore_global" "$HOME/.gitignore_global"
 ln -sf "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 ln -sf "$DOTFILES/claude/laravel-php-guidelines.md" "$HOME/.claude/laravel-php-guidelines.md"
 ln -sf "$DOTFILES/claude/settings.json" "$HOME/.claude/settings.json"
-ln -sf "$DOTFILES/claude/skills" "$HOME/.claude/skills"
+rm -f "$HOME/.claude/skills" && ln -s "$DOTFILES/claude/skills" "$HOME/.claude/skills"
+rm -f "$HOME/.claude/commands" && ln -s "$DOTFILES/claude/commands" "$HOME/.claude/commands"
 
 # Copilot
-ln -sf "$DOTFILES/copilot/skills" "$HOME/.copilot/skills"
+rm -f "$HOME/.copilot/skills" && ln -s "$DOTFILES/copilot/skills" "$HOME/.copilot/skills"
 
 # Tinkerwell
 mkdir -p "$HOME/.config/tinkerwell/themes"
